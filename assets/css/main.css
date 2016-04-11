@@ -424,6 +424,8 @@ dl dd {
   margin: 0 auto;
   border-radius: 100%;
   box-shadow: 0 0 0 1.5em #b63535;
+  mask: url(images/mask.svg#ghost);
+  -webkit-mask-image: url(images/mask.svg);
 }
 #main .avatar:before {
   content: '';
@@ -578,4 +580,7 @@ body.is-ie #wrapper {
     transform: translateX(-50%) translateY(-50%);
     background: url() no-repeat;
     background-size: cover;
+}
+
+.snapper {
 }

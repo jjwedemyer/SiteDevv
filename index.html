@@ -3,6 +3,7 @@
 	Identity by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	modified by Jakob Wedemeyer | jakob-wedemyer.de
 -->
 <html>
 
@@ -12,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="assets/js/own.js" type="text/javascript" />
 	<script src="bower_components/cheet.js/cheet.min.js" type="text/javascript"></script>
 	<script src="http://cdn.rawgit.com/namuol/cheet.js/master/cheet.min.js" type="text/javascript"></script>
 	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -29,35 +31,19 @@
 		<!-- Main -->
 		<section id="main">
 			<header>
-				<span class="avatar"><img src="images/avatar.jpg" alt="" height="122" width="122" id="img" /></span>
+				<span id="avatar_span" class="avatar"><img src="images/avatar.jpg" class="snapper" alt="" height="122" width="122" id="img" /></span>
 				<h1>Jakob Wedemeyer</h1>
 				<p style="margin: 0 0 0 0;">Computational Neuroscience Student</p>
-				<p><span id="dancer" onclick="dancer()" onmouseover="dancer(true)" onmouseout="dancer(false)">Passionate Dancer</span></p>
+				<p><span id="dancer">Passionate Dancer</span></p>
+				<!-- onclick="dancer()" onmouseover="dancer(true)" onmouseout="dancer(false)" -->
 			</header>
 			<footer>
 				<ul id="pulser" class="icon_color icons">
-					<li><a href="https://twitter.com/jj_wedemyer" class="fa-twitter fa-inverse">Twitter</a></li>
+					<li><a href="https://twitter.com/jj_wedemyer" class="fa-twitter">Twitter</a></li>
 					<!-- <li><a href="https://www.instagram.com/jj_wedemeyer/" class="fa-instagram">Instagram</a></li> -->
 					<li><a href="http://fusion-blast.com/" class="fa-coffee">Blog</a></li>
 					<li><a href="https://www.facebook.com/jakobwedemyer" class="fa-facebook">Facebook</a></li>
-					<li>
-						<a href="https://github.com/jjwedemyer" class="fa-github">
-							<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-								<defs>
-									<style>
-										text {
-											font-family: FontAwesome;
-											fill: #ececec;
-										}
-									</style>
-									<mask id="mask">
-										<text y="100" id="knockout" class="fa-github">Githunb</text>
-									</mask>
-								</defs>
-								<use xlink:href="#knockout" />
-							</svg>
-						</a>
-					</li>
+					<li><a href="https://github.com/jjwedemyer" class="fa-github">Github</a></li>
 				</ul>
 			</footer>
 		</section>
@@ -79,6 +65,9 @@
 	<!-- Scripts -->
 	<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
 	<script>
+		/*if ('addEventListener' in window) {
+			document.getElementById('avatar_span').addEventListener('mouseover', snapper())
+		}*/
 		if ('addEventListener' in window) {
 			window.addEventListener('load', function() {
 				document.body.className = document.body.className.replace(/\bis-loading\b/, '');
@@ -87,17 +76,6 @@
 		}
 	</script>
 	<script>
-		function dancer(dancevid) {
-			if (dancevid == undefined) {
-				document.getElementById('bgvid').style.display = (document.getElementById('bgvid').style.display == 'block' ? 'none' : 'block');
-			}
-			if (dancevid == true) {
-				document.getElementById('bgvid').style.display = 'block';
-			}
-			else if (dancevid == false) {
-				document.getElementById('bgvid').style.display = 'none';
-			}
-		};
 		cheet('↑ ↑ ↓ ↓ ← ←', function() {
 			alert('Voilà!');
 		});
@@ -105,35 +83,7 @@
 			document.body.className = (document.body.className == ' bg_f4' ? ' bg_norm' : ' bg_f4');
 		});
 		cheet('d a n c e', dancer());
-		cheet('p u l s e', function() {
-			var children = document.getElementById('pulser').children;
-			for (var i = 0; i < children.length; i++) {
-				children[i].firstElementChild.classList.add('fa-pulse');
-			}
-			document.
-			setTimeout(function() {
-				for (var i = 0; i < children.length; i++) {
-					children[i].firstElementChild.classList.remove('fa-pulse');
-				}
-			}, 5000);
-		});
-		cheet('b l u e', function() {
-			document.getElementById('main').style.background = (document.getElementById('main').style.background == '#35AAB6' ? '' : '#35AAB6');
-			document.getElementById('img').style.background = (document.getElementById('img').style.background == '#35AAB6' ? '#b63535' : '#35AAB6');
-		});
-		/*cheet('b l a c k', function () {
-					document.body.write("<span class="neg">ERROR 404</span><p>The page is missing or never was written. You can wait and<br /> see if it becomes available again, or you can restart your computer.	 </p> <p>
-* Send us an e-mail to notify this and try it later.<br />
-
-* Press CTRL+ALT+DEL to restart your computer. You will<br />
- &nbsp; lose unsaved information in any programs that are running.
-</p>
-Press any link to continue <blink>_</blink>
-<div class="menu">
-<a href="index.html">index</a> |
-<a href="contact.html">webmaster</a> |
-</div>"
-				)});*/
+		cheet('p u l s e', pulse());
 	</script>
 
 </body>
