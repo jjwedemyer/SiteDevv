@@ -418,12 +418,7 @@ dl dd {
   position: relative;
   display: block;
 }
-#main .avatar img {
-  /*display: block;*/
-  margin: 0 auto;
-  border-radius: 0%;
-  box-shadow: 0 0 0 1.5em #b63535;
-}
+
 #main .avatar:before {
   content: '';
   display: block;
@@ -578,6 +573,35 @@ body.is-ie #wrapper {
     background: url() no-repeat;
     background-size: cover;
 }
+.av_wrap {
+  position: absolute;
+  display: inline;
+  top: 0px;
+  left: 0px;
+  margin: 0 auto;
+}
 
-.snapper {
+
+#avatar {
+  /*display: block;*/
+  height: 122px;
+  width: 122px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5em #b63535;
+}
+
+#snap_svg {
+  position: absolute;
+  width: 122px;
+  height: 122px;
+}
+#snap_avatar {
+  position: absolute;
+}
+.switched {
+  position: relative;
+  transition: opacity 0.1s ease-in-out;
+}
+.switched.notvisible {
+  opacity: 0;
 }
