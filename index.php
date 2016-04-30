@@ -8,7 +8,24 @@
 <?php
 include 'user.php';
 include 'session.php';
-function fbav("$user->uuid")
+require 'db_conf.inc.php';
+function readDB($identifier)
+{
+	$con  = mysql_connect($db_host, $db_user, $db_pass);
+	if(! $con ) {
+		die('Could not connect: ' . mysql_error());
+	}
+	$sql = "SELECT * FROM user".
+					"WHERE UUID== $identifier OR handle == $identifier";
+	mysql_select_db('rage');
+	$retval = mysql_query( $sql, $con );
+	if(! $retval ) {
+		die('Could not enter data: ' . mysql_error());
+	}
+	$person = new user()
+	mysql_close($con);
+}
+function fbav($user->uuid)
 {
 	$request = new FacebookRequest(
   	$session,

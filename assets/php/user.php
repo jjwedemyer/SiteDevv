@@ -13,6 +13,12 @@
       $this->u_mail = setMail($mail);
       $this->uuid   = $id;
     }
+    public static function create()
+    {
+      $instance = new self();
+      return $instance;
+    }
+
 
     function creHandle($value) // creates user handle based on RealName.
     {
@@ -37,7 +43,7 @@
     public function writeDB()
     {
       $con  = mysql_connect($db_host, $db_user, $db_pass);
-      if(! $conn ) {
+      if(! $con ) {
         die('Could not connect: ' . mysql_error());
       }
       $date = time();
@@ -45,14 +51,14 @@
               "(UUID,realname,handle,mail,bg,fbuname,fbuuid,insta,snap,sncode,twitterhandle,peris,meerkatid,tumblr,join_date)".
               "VALUES('$this->uuid','$this->displayName','$this->handle','$this->mail','$this->bg','$this->fbuname','$this->fbuuid','$this->insta','$this->scuname','$this->sccode','$this->twhandle','$this->perid','$this->meerkatid','$this->tumbuname',NOW())";
       mysql_select_db('rage');
-      $retval = mysql_query( $sql, $conn );
+      $retval = mysql_query( $sql, $con );
       if(! $retval ) {
         die('Could not enter data: ' . mysql_error());
       }
 
       echo "Entered data successfully\n";
 
-      mysql_close($conn);
+      mysql_close($con);
     }
 
     public $uuid        =; //if created with fb == fbuuid otherwise dunno
