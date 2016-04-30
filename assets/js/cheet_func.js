@@ -1,6 +1,7 @@
 /* cheet.js functions */
 
 function dancer(dancevid) {
+  alert("lol");
   if (dancevid == undefined) {
     document.getElementById('bgvid').style.display = (document.getElementById('bgvid').style.display == 'block' ? 'none' : 'block');
   }
@@ -9,7 +10,7 @@ function dancer(dancevid) {
   } else if (dancevid == false) {
     document.getElementById('bgvid').style.display = 'none';
   }
-};
+}
 /*function pulse() {
   var children = document.getElementById('pulser').children;
   for (var i = 0; i < children.length; i++) {

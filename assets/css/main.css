@@ -557,7 +557,7 @@ body.is-ie #wrapper {
 	color: #2db388;
 }
 #bgvid {
-		display: none;
+		display: none ;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -594,13 +594,14 @@ body.is-ie #wrapper {
   position: absolute;
   width: 122px;
   height: 122px;
+  box-shadow: 0 0 0 1.5em #b63535;
 }
 #snap_avatar {
   position: absolute;
 }
 .switched {
   position: relative;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 .switched.notvisible {
   opacity: 0;

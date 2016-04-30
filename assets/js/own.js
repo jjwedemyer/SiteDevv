@@ -25,7 +25,7 @@ function getMobileOperatingSystem() {
 /* switches avatar effects based on OS.
  *  Has no return value.
  */
-function snapper(getMobileOperatingSystem()) {
+function snapper() {
   var ele = document.getElementById('avatar_span')
   if (getMobileOperatingSystem == 'iOS' || 'Android') {
     ele.innerHTML = '<a href="snapchat://add/jj_wedemeyer" alt="me on snapchat"><img src="images/avatar.jpg" alt="" id="img" /></a>'
@@ -40,7 +40,7 @@ function fade(id) {
  * Will switch out links to launch apps if functional
  *
  */
-function mobileLinks(getMobileOperatingSystem()) {
+function mobileLinks() {
   var elements = document.getElementsByClassName('link')
   var services = [github,twitter,facebook,snapchat,spotify,youtube,vimeo,vine,soundcloud,twitch]
 
