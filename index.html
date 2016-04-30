@@ -8,7 +8,9 @@
 <html>
 
 <head>
-	<title>Jakob Wedemeyer</title>
+	<title><?php
+		echo $u_name
+	?></title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
@@ -33,7 +35,7 @@
 				<span class="avatar">
 					<div id="avatar_wrap">
 						<div class=" av_wrap switched" id="snapped">
-							<img src="images/snapcode.svg" id="snap_svg"/>
+							<img src=<?php  ?> id="snap_svg"/>
 							<svg xmlns="http://www.w3.org/2000/svg" id="snap_avatar" xmlns:xlink="http://www.w3.org/1999/xlink" width="122" height="122">
 					  		<image xlink:href="images/avatar.jpg" width="122" height="122" clip-path="url(#ghost)"></image>
 							</svg>
