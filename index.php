@@ -9,6 +9,7 @@
 include 'user.php';
 include 'session.php';
 require 'db_conf.inc.php';
+$person;
 function readDB($identifier)
 {
 	$con  = mysql_connect($db_host, $db_user, $db_pass);
@@ -20,21 +21,22 @@ function readDB($identifier)
 	mysql_select_db('rage');
 	$retval = mysql_query( $sql, $con );
 	if(! $retval ) {
-		die('Could not enter data: ' . mysql_error());
+		die('Could not get data: ' . mysql_error());
 	}
-	$person = new user()
+	global $person = new User($retval);
 	mysql_close($con);
 }
-function fbav($user->uuid)
+function fbav($id)
 {
 	$request = new FacebookRequest(
   	$session,
   	'GET',
-  	"/$uuid/picture"
+  	"/$id/picture"
 	);
 	$response = $request->execute();
 	$graphObject = $response->getGraphObject();
-	$pic_url = $graphObject->data['url'];
+	$pic_url = $graphObject->getProperty('data')['url'];
+	return $pic_url
 }
 
 echo <<<EOD
@@ -70,7 +72,7 @@ echo <<<EOD
 						<div class=" av_wrap switched" id="snapped">
 							<img src=$sccode id="snap_svg"/>
 							<svg xmlns="http://www.w3.org/2000/svg" id="snap_avatar" xmlns:xlink="http://www.w3.org/1999/xlink" width="122" height="122">
-					  		<image xlink:href="$pic_url" width="122" height="122" clip-path="url(#ghost)"></image>
+					  		<image xlink:href="fbav($person->uuid)" width="122" height="122" clip-path="url(#ghost)"></image>
 							</svg>
 						</div>
 						<div class="av_wrap switched" id="av">
@@ -78,17 +80,17 @@ echo <<<EOD
 						</div>
 				</div>
 				</span>
-				<h1>$user->displayName</h1>
-				<p style="margin: 0 0 0 0;">$user->tagline[1]</p>
-				<p>$user->tagline[2]</span></p>
+				<h1>$person->displayName</h1>
+				<p style="margin: 0 0 0 0;">$person->tagline[1]</p>
+				<p>$person->tagline[2]</span></p>
 				<!-- onclick="dancer()" onmouseover="dancer(true)" onmouseout="dancer(false)" -->
 			</header>
 			<footer>
 				<ul id="pulser" class="icon_color icons">
-					<li><a id="tw_link" href="https://twitter.com/$user->twhandle" class="fa-twitter link">Twitter</a></li>
-					<li><a href="https://www.instagram.com/$user->insta" class="fa-instagram">Instagram</a></li>
-					<li><a id="blog_link" href="$user->website" class="fa-coffee link">Blog</a></li>
-					<li><a id="fb_link" href="https://www.facebook.com/$user->fbuname" class="fa-facebook link">Facebook</a></li>
+					<li><a id="tw_link" href="https://twitter.com/$person->twhandle" class="fa-twitter link">Twitter</a></li>
+					<li><a href="https://www.instagram.com/$person->insta" class="fa-instagram">Instagram</a></li>
+					<li><a id="blog_link" href="$person->website" class="fa-coffee link">Blog</a></li>
+					<li><a id="fb_link" href="https://www.facebook.com/$person->fbuname" class="fa-facebook link">Facebook</a></li>
 				</ul>
 			</footer>
 		</section>
@@ -96,7 +98,7 @@ echo <<<EOD
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="copyright">
-				<li>&copy; <a href="mailto:$user->u_mail">$user->displayName</a> 2016</li>
+				<li>&copy; <a href="mailto:$person->u_mail">$person->displayName</a> 2016</li>
 				<li>Design: <a href="http://html5up.net">HTML5 UP</a> modified by <a href="http://jakob-wedemyer.de">Jakob Wedemeyer</a></li>
 				<li><a href="admin/login.php">Login</a></li>
 			</ul>

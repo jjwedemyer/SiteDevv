@@ -6,12 +6,23 @@
    */
   class User
   {
-    public function __construct($id, $name, $mail) //constructor used for creating object
+    //constructor used for creating object always needs array to work
+    public function __construct($data)
     {
-      $this->u_name = $name;
-      $this->handle = creHandle($name);
-      $this->u_mail = setMail($mail);
-      $this->uuid   = $id;
+      $this->uuid         = $data['UUID'];
+      $this->u_mail       = setMail($data['mail']);
+      $this->displayName  = $data['name'];
+      $this->handle       = creHandle($data['name']);
+      $this->bg           = $data['bg'];
+      $this->fbuname      = $data['fbuname'];
+      $this->insta        = $data['insta'];
+      $this->scuname      = $data['scuname'];
+      $this->sccode       = $data['sccode'];
+      $this->twhandle     = $data['twhandle'];
+      $this->tumbuname    = $data['tumbuname'];
+      $this->perid        = $data['perid'];
+      $this->meerkatid    = $data['meerkatid'];
+      $this->tagline      = $data['tagline'];
     }
     public static function create()
     {
@@ -67,7 +78,6 @@
     public $handle      =; // username...
     public $bg          =; //Background pciture
     public $fbuname     =; //Facebook user name
-    public $fbuuid      =; //if not in uuid then save here
     public $insta       =; // Instagram handle
     public $scuname     =; //snapchat user name
     public $sccode      =; //snapcope
